@@ -1,3 +1,22 @@
+def gestion_usuarios():
+    usuarios = []
+    while True:
+        print("Gestión de usuarios")
+        print("1. Agregar usuario")
+        print("2. Mostrar usuarios")
+        print("3. Volver al menú principal")
+        opcion = input("Seleccione una opción: ")
+        
+        if opcion == "1":
+            agregar_usuario(usuarios)
+        elif opcion == "2":
+            mostrar_usuario(usuarios)
+        elif opcion == "3":
+            print("Volviendo al menú principal.")
+            break
+        else:
+            print("Opción no válida. Por favor, intente de nuevo.")
+
 def agregar_usuario(usuarios):  
     id = input("Ingrese el ID del usuario: ")
     nombre = input("Ingrese el nombre del usuario: ")

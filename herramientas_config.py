@@ -1,3 +1,22 @@
+def gestionar_herramientas():
+    herramientas = []
+    
+    while True:
+        print("\nGestión de herramientas")
+        print("1. Agregar herramienta")
+        print("2. Mostrar herramientas")
+        print("3. Volver al menú principal")
+        opcion = input("Seleccione una opción: ")
+        
+        if opcion == "1":
+            agregar_herramienta(herramientas)
+        elif opcion == "2":
+            mostrar_herramientas(herramientas)
+        elif opcion == "3":
+            print("Volviendo al menú principal.")
+            break
+        else:
+            print("Opción no válida. Por favor, intente de nuevo.")
 
 def agregar_herramienta(herramientas):  
     id = input("Ingrese el ID de la herramienta: ")
