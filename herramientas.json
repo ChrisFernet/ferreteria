@@ -1,10 +1,10 @@
 [
     {
         "id": "01",
-        "nombre": "martillo",
-        "categoria": "construccion",
+        "nombre": "hola",
+        "categoria": "constru",
         "cantidad": 10,
-        "estado": "activo",
+        "estado": "fuera de servicio",
         "valor_estimado": 10000.0
     }
 ]

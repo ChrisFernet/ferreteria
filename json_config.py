@@ -1,48 +1,23 @@
-# este modulo se encarga de guardar los datos json en el disco
+# guarda datos en el json
 
 import json
 
 def cargar_datos(nom_archivo="usuarios.json"):
-    """
-    Carga los datos desde un archivo JSON.
-    Si el archivo no existe o está corrupto, devuelve una lista vacía.
-    """
+    # si no existe: lista vacio
     try:
-        with open(nom_archivo, "r", encoding="utf-8") as arch:
-            datos = json.load(arch)
-            # Verificar que sea una lista
-            if isinstance(datos, list):
-                return datos
-            else:
-                print(f"Advertencia: {nom_archivo} no contiene una lista. Se creará uno nuevo.")
-                return []
-    
-    except FileNotFoundError:
-        # El archivo no existe, esto es normal la primera vez
-        print(f"Archivo {nom_archivo} no encontrado. Se creará uno nuevo.")
-        return []
-    
-    except json.JSONDecodeError:
-        # El archivo existe pero está corrupto
-        print(f"Error: {nom_archivo} está corrupto o mal formateado.")
-        print("Se creará un archivo nuevo.")
-        return []
-    
-    except Exception as e:
-        # Cualquier otro error
-        print(f"Error inesperado al cargar {nom_archivo}: {e}")
+        archivo = open(nom_archivo, "r")
+        datos = json.load(archivo)
+        archivo.close()
+        return datos
+    except Exception:
         return []
 
 
 def guardar_datos(datos, nom_archivo="usuarios.json"):
-    """
-    Guarda los datos en un archivo JSON.
-    """
     try:
-        with open(nom_archivo, "w", encoding="utf-8") as arch:
-            json.dump(datos, arch, indent=4, ensure_ascii=False)
+        archivo = open(nom_archivo, "w")
+        json.dump(datos, archivo, indent=4)
+        archivo.close()
         return True
-    
-    except Exception as e:
-        print(f"Error al guardar {nom_archivo}: {e}")
+    except Exception:
         return False

@@ -1,5 +1,4 @@
 from json_config import cargar_datos, guardar_datos
-from datetime import datetime, timedelta
 
 def gestionar_prestamos(usuarios, herramientas):
     prestamos = cargar_datos("prestamos.json")
