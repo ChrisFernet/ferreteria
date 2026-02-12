@@ -1,51 +1,58 @@
 from json_config import cargar_datos, guardar_datos
 
-def gestion_usuarios(usuarios):
+def gestion_usuarios():
+    """Menú principal de gestión de usuarios"""
     usuarios = cargar_datos("usuarios.json")
     
     while True:
         print("\n" + "="*50)
-        print("Gestión de usuarios")
+        print("GESTION DE USUARIOS")
         print("="*50)
         print("1. Agregar usuario")
-        print("2. Mostrar usuarios")
-        print("3. Buscar usuario")
-        print("4. Actualizar usuario")
-        print("5. Eliminar usuario")
-        print("6. Volver al menú principal")
-        opcion = input("Seleccione una opción: ")
+        print("2. Mostrar todos los usuarios")
+        print("3. Buscar un usuario")
+        print("4. Volver al menu principal")
+        
+        opcion = input("\nSeleccione una opcion: ")
         
         if opcion == "1":
             agregar_usuario(usuarios)
             guardar_datos(usuarios, "usuarios.json")
+            print("\nPresione ENTER para continuar...")
+            input()
+            
         elif opcion == "2":
-            cargar_datos(usuarios)
-            mostrar_usuario(usuarios)
+            mostrar_usuarios(usuarios)
+            print("\nPresione ENTER para continuar...")
+            input()
+            
         elif opcion == "3":
             buscar_usuario(usuarios)
+            print("\nPresione ENTER para continuar...")
+            input()
+            
         elif opcion == "4":
-            actualizar_usuario(usuarios)
-            guardar_datos(usuarios, "usuarios.json")
-        elif opcion == "5":
-            eliminar_usuario(usuarios)
-            guardar_datos(usuarios, "usuarios.json")
-        elif opcion == "6":
-            print("Volviendo al menú principal.")
+            print("Volviendo al menu principal...")
             break
+            
         else:
-            print("Opción no válida. Por favor, intente de nuevo.")
-    
-    return usuarios
+            print("Opcion no valida.")
+            print("\nPresione ENTER para continuar...")
+            input()
+
 
 def agregar_usuario(usuarios):
-    id = input("Ingrese el ID del usuario: ")
-    nombre = input("Ingrese el nombre del usuario: ")
-    apellido = input("Ingrese el primer apellido del usuario: ")
-    telefono = int(input("Ingrese el teléfono del usuario: "))
-    direccion = input("Ingrese la dirección del usuario: ")
-    tipo = input("Ingrese el tipo de usuario: ")
+    """Agrega un nuevo usuario a la lista"""
+    print("\n--- AGREGAR NUEVO USUARIO ---")
     
-    usuario = {
+    id = input("ID del usuario: ")
+    nombre = input("Nombre: ")
+    apellido = input("Apellido: ")
+    telefono = input("Telefono: ")
+    direccion = input("Direccion: ")
+    tipo = input("Tipo (residente/administrador): ")
+    
+    nuevo_usuario = {
         "id": id,
         "nombre": nombre,
         "apellido": apellido,
@@ -54,99 +61,53 @@ def agregar_usuario(usuarios):
         "tipo": tipo
     }
     
-    usuarios.append(usuarios)
-    print("Usuario agregado exitosamente.")
+    usuarios.append(nuevo_usuario)
+    print("\nUsuario agregado correctamente!")
 
-def mostrar_usuario(usuarios):
-    if not usuarios:
-        print("No hay usuarios registrados.")
+
+def mostrar_usuarios(usuarios):
+    """Muestra todos los usuarios"""
+    if len(usuarios) == 0:
+        print("\nNo hay usuarios registrados.")
         return
     
-    print("\n" + "="*100)
+    print("\n" + "="*80)
+    print("LISTA DE USUARIOS")
+    print("="*80)
+    
     for usuario in usuarios:
-        print(f"ID: {usuario['id']}, Nombre: {usuario['nombre']}, Categoría: {usuario['categoria']}, Cantidad: {usuario['cantidad']}, Estado: {usuario['estado']}, Valor Estimado: {usuario['valor_estimado']}")
-    print("="*100)
+        print(f"ID: {usuario['id']}")
+        print(f"Nombre: {usuario['nombre']} {usuario['apellido']}")
+        print(f"Telefono: {usuario['telefono']}")
+        print(f"Direccion: {usuario['direccion']}")
+        print(f"Tipo: {usuario['tipo']}")
+        print("-" * 80)
+    
+    print(f"Total: {len(usuarios)} usuarios")
+
 
 def buscar_usuario(usuarios):
-    print("\nBuscar usuario por:")
-    print("1. ID")
-    print("2. Nombre")
-    opcion = input("Seleccione opción: ")
+    """Busca un usuario por ID"""
+    if len(usuarios) == 0:
+        print("\nNo hay usuarios registrados.")
+        return
     
-    if opcion == "1":
-        id_buscar = input("Ingrese el ID: ")
-        for u in usuarios:
-            if u["id"] == id_buscar:
-                print("\n--- Usuario encontrado ---")
-                print(f"ID: {u['id']}")
-                print(f"Nombre: {u['nombre']} {u['apellido']}")
-                print(f"Teléfono: {u['telefono']}")
-                print(f"Dirección: {u['direccion']}")
-                print(f"Tipo: {u['tipo']}")
-                return
-        print("Usuario no encontrado.")
+    print("\n--- BUSCAR USUARIO ---")
+    id_buscar = input("Ingrese el ID del usuario: ")
     
-    elif opcion == "2":
-        nombre_buscar = input("Ingrese el nombre: ").lower()
-        encontrados = [u for u in usuarios if nombre_buscar in u["nombre"].lower()]
-        if encontrados:
-            print(f"\n--- Se encontraron {len(encontrados)} usuario(s) ---")
-            for u in encontrados:
-                print(f"ID: {u['id']}, Nombre: {u['nombre']} {u['apellido']}, Tipo: {u['tipo']}")
-        else:
-            print("No se encontraron usuarios con ese nombre.")
-
-def actualizar_usuario(usuarios):
-    id_actualizar = input("Ingrese el ID del usuario a actualizar: ")
+    usuario_encontrado = None
     
-    for u in usuarios:
-        if u["id"] == id_actualizar:
-            print("\n--- Usuario encontrado ---")
-            print(f"Nombre actual: {u['nombre']} {u['apellido']}")
-            print("\n¿Qué desea actualizar?")
-            print("1. Nombre")
-            print("2. Apellido")
-            print("3. Teléfono")
-            print("4. Dirección")
-            print("5. Tipo de usuario")
-            print("6. Todo")
-            
-            opcion = input("Seleccione opción: ")
-            
-            if opcion == "1":
-                u["nombre"] = input("Nuevo nombre: ")
-            elif opcion == "2":
-                u["apellido"] = input("Nuevo apellido: ")
-            elif opcion == "3":
-                u["telefono"] = int(input("Nuevo teléfono: "))
-            elif opcion == "4":
-                u["direccion"] = input("Nueva dirección: ")
-            elif opcion == "5":
-                u["tipo"] = input("Nuevo tipo (residente/administrador): ")
-            elif opcion == "6":
-                u["nombre"] = input("Nuevo nombre: ")
-                u["apellido"] = input("Nuevo apellido: ")
-                u["telefono"] = int(input("Nuevo teléfono: "))
-                u["direccion"] = input("Nueva dirección: ")
-                u["tipo"] = input("Nuevo tipo: ")
-            
-            print("Usuario actualizado exitosamente.")
-            return
+    for usuario in usuarios:
+        if usuario["id"] == id_buscar:
+            usuario_encontrado = usuario
+            break
     
-    print("Usuario no encontrado.")
-
-def eliminar_usuario(usuarios):
-    id_eliminar = input("Ingrese el ID del usuario a eliminar: ")
-    
-    for i, u in enumerate(usuarios):
-        if u["id"] == id_eliminar:
-            print(f"\n¿Está seguro de eliminar a '{u['nombre']} {u['apellido']}'? (s/n): ", end="")
-            confirmacion = input().lower()
-            if confirmacion == "s":
-                usuarios.pop(i)
-                print("Usuario eliminado exitosamente.")
-            else:
-                print("Eliminación cancelada.")
-            return
-    
-    print("Usuario no encontrado.")
+    if usuario_encontrado:
+        print("\nUsuario encontrado:")
+        print(f"ID: {usuario_encontrado['id']}")
+        print(f"Nombre: {usuario_encontrado['nombre']} {usuario_encontrado['apellido']}")
+        print(f"Telefono: {usuario_encontrado['telefono']}")
+        print(f"Direccion: {usuario_encontrado['direccion']}")
+        print(f"Tipo: {usuario_encontrado['tipo']}")
+    else:
+        print("\nUsuario no encontrado.")

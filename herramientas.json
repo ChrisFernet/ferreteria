@@ -1,0 +1,10 @@
+[
+    {
+        "id": "01",
+        "nombre": "martillo",
+        "categoria": "construccion",
+        "cantidad": 10,
+        "estado": "activo",
+        "valor_estimado": 10000.0
+    }
+]

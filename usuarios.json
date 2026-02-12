@@ -1,0 +1,10 @@
+[
+    {
+        "id": "01",
+        "nombre": "carlos",
+        "apellido": "solano",
+        "telefono": "2203",
+        "direccion": "calle",
+        "tipo": "residente"
+    }
+]

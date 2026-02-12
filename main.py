@@ -1,38 +1,27 @@
-from herramientas_config import agregar_herramienta, mostrar_herramientas, gestionar_herramientas
-from menus_config import menu_admin
-from usuario_config import agregar_usuario, mostrar_usuario, gestion_usuarios
+from herramientas_config import gestionar_herramientas
+from usuario_config import gestion_usuarios
 
-# ========================================
-# COLORES EN ESCALA DE AZULES
-# ========================================
-AZUL_OSCURO = '\033[34m'      # Azul oscuro para títulos
-AZUL_CLARO = '\033[94m'       # Azul claro para opciones
-CYAN = '\033[96m'             # Cyan para información
-AZUL_BRILLANTE = '\033[1;34m' # Azul brillante para destacar
-BLANCO = '\033[97m'           # Blanco para texto normal
-RESET = '\033[0m'             # Resetear color
-NEGRITA = '\033[1m'           # Negrita
-
-# ========================================
-# FUNCIONES DE DISEÑO SENCILLO
-# ========================================
+# Colores
+AZUL_OSCURO = '\033[34m'
+AZUL_CLARO = '\033[94m'
+CYAN = '\033[96m'
+AZUL_BRILLANTE = '\033[1;34m'
+BLANCO = '\033[97m'
+RESET = '\033[0m' # volver al color base
+NEGRITA = '\033[1m'
 
 def limpiar_pantalla():
-    """Simula limpiar la pantalla"""
     print("\n" * 50)
 
 def linea(longitud=60, color=AZUL_CLARO):
-    """Crea una línea simple"""
     print(f"{color}{'─' * longitud}{RESET}")
 
 def titulo(texto):
-    """Crea un título simple y centrado"""
     longitud = 60
     print(f"\n{AZUL_BRILLANTE}{NEGRITA}{texto.center(longitud)}{RESET}")
     linea(longitud, AZUL_OSCURO)
 
 def mensaje_bienvenida():
-    """Mensaje de bienvenida simple"""
     limpiar_pantalla()
     print()
     linea(60, CYAN)
@@ -42,25 +31,17 @@ def mensaje_bienvenida():
     print()
     input(f"{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
 
-def menu(opcion=None):
-    """Menú principal"""
+def menu():
     limpiar_pantalla()
     titulo("MENU PRINCIPAL")
     print()
-    
     print(f"{AZUL_CLARO}  1.{RESET} {BLANCO}Usuario{RESET}")
     print(f"{AZUL_CLARO}  2.{RESET} {BLANCO}Administrador{RESET}")
     print(f"{AZUL_CLARO}  3.{RESET} {BLANCO}Salir{RESET}")
-    
     print()
     linea()
 
 def main_menu():
-    """Función del menú principal"""
-    herramientas = []
-    usuarios = []
-    
-    # Mostrar mensaje de bienvenida
     mensaje_bienvenida()
     
     while True:
@@ -72,7 +53,7 @@ def main_menu():
             input(f"{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
             
         elif opcion == "2":
-            menu_administrador(usuarios, herramientas)
+            menu_administrador()
             
         elif opcion == "3":
             limpiar_pantalla()
@@ -88,8 +69,7 @@ def main_menu():
             print(f"\n{AZUL_CLARO}Opcion no valida. Intente de nuevo.{RESET}")
             input(f"{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
 
-def menu_administrador(usuarios, herramientas):
-    """Menú de administrador"""
+def menu_administrador():
     while True:
         limpiar_pantalla()
         titulo("MENU ADMINISTRADOR")
@@ -107,10 +87,10 @@ def menu_administrador(usuarios, herramientas):
         opcion_admin = input(f"\n{AZUL_BRILLANTE}Seleccione una opcion: {RESET}")
         
         if opcion_admin == "1":
-            usuarios = gestion_usuarios(usuarios)
+            gestion_usuarios()
             
         elif opcion_admin == "2":
-            gestionar_herramientas(herramientas)
+            gestionar_herramientas()
             
         elif opcion_admin == "3":
             print(f"\n{CYAN}Modulo de prestamos en desarrollo{RESET}")
@@ -128,5 +108,5 @@ def menu_administrador(usuarios, herramientas):
             print(f"\n{AZUL_CLARO}Opcion no valida.{RESET}")
             input(f"{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
 
-
+# Ejecutar
 main_menu()
