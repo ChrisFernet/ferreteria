@@ -1,39 +1,9 @@
 from json_config import cargar_datos, guardar_datos
+from estilos import *
 
-# color
-
-AZUL_OSCURO = '\033[34m'
-AZUL_CLARO = '\033[94m'
-CYAN = '\033[96m'
-AZUL_BRILLANTE = '\033[1;34m'
-BLANCO = '\033[97m'
-VERDE = '\033[92m'
-AMARILLO = '\033[93m'
-ROJO = '\033[91m'
-RESET = '\033[0m'
-NEGRITA = '\033[1m'
-
-# funciones de apariencia
-
-def limpiar_pantalla():
-    """Simula limpiar la pantalla"""
-    print("\n" * 50)
-
-def linea(longitud=70, color=AZUL_CLARO):
-    """Crea una línea simple"""
-    print(f"{color}{'─' * longitud}{RESET}")
-
-def titulo(texto):
-    """Crea un título simple y centrado"""
-    longitud = 70
-    print(f"\n{AZUL_BRILLANTE}{NEGRITA}{texto.center(longitud)}{RESET}")
-    linea(longitud, AZUL_OSCURO)
-
-def pausa():
-    """Pausa hasta que el usuario presione ENTER"""
-    input(f"\n{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
-
-# menu
+# ========================================
+# MENÚ Y FUNCIONES PRINCIPALES
+# ========================================
 
 def gestionar_herramientas():
     """Menú principal de gestión de herramientas"""
@@ -84,12 +54,13 @@ def gestionar_herramientas():
             break
             
         else:
-            print(f"\n{ROJO}Opcion no valida. Intente de nuevo.{RESET}")
+            mensaje_error("Opcion no valida. Intente de nuevo.")
             pausa()
 
 
-# funciones de config 
-
+# ========================================
+# FUNCIONES DE GESTIÓN
+# ========================================
 
 def agregar_herramienta(herramientas):
     """Agrega una nueva herramienta"""
@@ -114,25 +85,24 @@ def agregar_herramienta(herramientas):
     }
     
     herramientas.append(herramienta)
-    print(f"\n{VERDE}✓ Herramienta agregada exitosamente!{RESET}")
+    mensaje_exito("Herramienta agregada exitosamente!")
 
 
 def mostrar_herramientas(herramientas):
-    """Muestra todas las herramientas de forma dinámica"""
+    """Muestra todas las herramientas del inventario"""
     limpiar_pantalla()
     titulo("INVENTARIO DE HERRAMIENTAS")
     print()
     
     if len(herramientas) == 0:
-        print(f"{AMARILLO}No hay herramientas registradas en el sistema.{RESET}")
+        mensaje_advertencia("No hay herramientas registradas en el sistema.")
         return
         
     print(f"{CYAN}Total de herramientas: {NEGRITA}{len(herramientas)}{RESET}")
     print()
     linea(70, AZUL_CLARO)
     
-    # apartado de "mostrar"
-
+    # Mostrar cada herramienta
     for i, h in enumerate(herramientas, 1):
         print()
         print(f"{AZUL_BRILLANTE}▶ Herramienta #{i}{RESET}")
@@ -141,8 +111,7 @@ def mostrar_herramientas(herramientas):
         print(f"  {CYAN}Categoria:{RESET} {h['categoria']}")
         print(f"  {CYAN}Cantidad:{RESET} {h['cantidad']} unidades")
         
-        # color dependiendo del estado
-
+        # Color dependiendo del estado
         if h['estado'].lower() == 'activa':
             color_estado = VERDE
         elif h['estado'].lower() == 'en reparacion':
@@ -153,21 +122,18 @@ def mostrar_herramientas(herramientas):
         print(f"  {CYAN}Estado:{RESET} {color_estado}{h['estado']}{RESET}")
         print(f"  {CYAN}Valor estimado:{RESET} ${h['valor_estimado']:.2f}")
         
-        # linea final
-        
+        # Línea separadora
         if i < len(herramientas):
             print(f"{AZUL_CLARO}{'┄' * 70}{RESET}")
     
     print()
     linea(70, AZUL_CLARO)
     
-    # estadisticas
-    
+    # Estadísticas
     print()
     print(f"{AZUL_BRILLANTE}ESTADISTICAS:{RESET}")
     
     # Contar herramientas por estado
-    
     activas = sum(1 for h in herramientas if h['estado'].lower() == 'activa')
     en_reparacion = sum(1 for h in herramientas if 'reparacion' in h['estado'].lower())
     fuera_servicio = sum(1 for h in herramientas if 'fuera' in h['estado'].lower())
@@ -188,7 +154,7 @@ def buscar_herramienta(herramientas):
     print()
     
     if len(herramientas) == 0:
-        print(f"{AMARILLO}No hay herramientas registradas.{RESET}")
+        mensaje_advertencia("No hay herramientas registradas.")
         return
     
     print(f"{AZUL_CLARO}  1.{RESET} Buscar por ID")
@@ -217,7 +183,7 @@ def buscar_herramienta(herramientas):
                 break
         
         if not encontrada:
-            print(f"\n{ROJO}✗ Herramienta no encontrada.{RESET}")
+            mensaje_error("Herramienta no encontrada.")
     
     elif opcion == "2":
         nombre_buscar = input(f"\n{CYAN}Ingrese el nombre: {RESET}").lower()
@@ -232,9 +198,9 @@ def buscar_herramienta(herramientas):
             for h in encontradas:
                 print(f"\n  {CYAN}ID:{RESET} {h['id']} | {CYAN}Nombre:{RESET} {h['nombre']} | {CYAN}Cantidad:{RESET} {h['cantidad']}")
         else:
-            print(f"\n{ROJO}✗ No se encontraron herramientas con ese nombre.{RESET}")
+            mensaje_error("No se encontraron herramientas con ese nombre.")
     else:
-        print(f"\n{ROJO}Opcion no valida.{RESET}")
+        mensaje_error("Opcion no valida.")
 
 
 def actualizar_herramienta(herramientas):
@@ -244,7 +210,7 @@ def actualizar_herramienta(herramientas):
     print()
     
     if len(herramientas) == 0:
-        print(f"{AMARILLO}No hay herramientas registradas.{RESET}")
+        mensaje_advertencia("No hay herramientas registradas.")
         return
     
     id_actualizar = input(f"{CYAN}Ingrese el ID de la herramienta a actualizar: {RESET}")
@@ -284,13 +250,13 @@ def actualizar_herramienta(herramientas):
                 h["estado"] = input(f"{CYAN}Nuevo estado: {RESET}")
                 h["valor_estimado"] = float(input(f"{CYAN}Nuevo valor estimado: ${RESET}"))
             else:
-                print(f"\n{ROJO}Opcion no valida.{RESET}")
+                mensaje_error("Opcion no valida.")
                 return
             
-            print(f"\n{VERDE}✓ Herramienta actualizada exitosamente!{RESET}")
+            mensaje_exito("Herramienta actualizada exitosamente!")
             return
     
-    print(f"\n{ROJO}✗ Herramienta no encontrada.{RESET}")
+    mensaje_error("Herramienta no encontrada.")
 
 
 def eliminar_herramienta(herramientas):
@@ -300,7 +266,7 @@ def eliminar_herramienta(herramientas):
     print()
     
     if len(herramientas) == 0:
-        print(f"{AMARILLO}No hay herramientas registradas.{RESET}")
+        mensaje_advertencia("No hay herramientas registradas.")
         return
     
     id_eliminar = input(f"{CYAN}Ingrese el ID de la herramienta a eliminar: {RESET}")
@@ -320,9 +286,9 @@ def eliminar_herramienta(herramientas):
             
             if confirmacion == "s":
                 herramientas.pop(i)
-                print(f"\n{VERDE}✓ Herramienta eliminada exitosamente.{RESET}")
+                mensaje_exito("Herramienta eliminada exitosamente.")
             else:
                 print(f"\n{CYAN}Eliminacion cancelada.{RESET}")
             return
     
-    print(f"\n{ROJO}✗ Herramienta no encontrada.{RESET}")
+    mensaje_error("Herramienta no encontrada.")

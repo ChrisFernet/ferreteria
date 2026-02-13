@@ -6,5 +6,13 @@
         "cantidad": 10,
         "estado": "fuera de servicio",
         "valor_estimado": 10000.0
+    },
+    {
+        "id": "03",
+        "nombre": "alicante",
+        "categoria": "construccion",
+        "cantidad": 5,
+        "estado": "activa",
+        "valor_estimado": 10000.0
     }
 ]

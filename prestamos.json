@@ -1,0 +1,25 @@
+[
+    {
+        "id": "P001",
+        "id_usuario": "02",
+        "nombre_usuario": "crock odl",
+        "id_herramienta": "03",
+        "nombre_herramienta": "alicante",
+        "cantidad": 10,
+        "fecha_devolucion": "28/02/2020",
+        "estado": "devuelto",
+        "observaciones": ""
+    },
+    {
+        "id": "P002",
+        "id_solicitud": "S001",
+        "id_usuario": "01",
+        "nombre_usuario": "cris solano",
+        "id_herramienta": "03",
+        "nombre_herramienta": "alicante",
+        "cantidad": 5,
+        "fecha_devolucion": "2026-02-01",
+        "estado": "activo",
+        "observaciones": ""
+    }
+]

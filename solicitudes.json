@@ -1,0 +1,12 @@
+[
+    {
+        "id": "S001",
+        "id_usuario": "01",
+        "nombre_usuario": "cris solano",
+        "id_herramienta": "03",
+        "nombre_herramienta": "alicante",
+        "cantidad": 5,
+        "fecha_devolucion": "2026-02-01",
+        "estado": "aprobada"
+    }
+]

@@ -1,37 +1,9 @@
 from json_config import cargar_datos, guardar_datos
+from estilos import *
 
-# color
-
-AZUL_OSCURO = '\033[34m'
-AZUL_CLARO = '\033[94m'
-CYAN = '\033[96m'
-AZUL_BRILLANTE = '\033[1;34m'
-BLANCO = '\033[97m'
-VERDE = '\033[92m'
-AMARILLO = '\033[93m'
-ROJO = '\033[91m'
-RESET = '\033[0m'
-NEGRITA = '\033[1m'
-
-# funciones de apariencia
-
-def limpiar_pantalla():
-    """Simula limpiar la pantalla"""
-    print("\n" * 50)
-
-def linea(longitud=70, color=AZUL_CLARO):
-    """Crea una línea simple"""
-    print(f"{color}{'─' * longitud}{RESET}")
-
-def titulo(texto):
-    """Crea un título simple y centrado"""
-    longitud = 70
-    print(f"\n{AZUL_BRILLANTE}{NEGRITA}{texto.center(longitud)}{RESET}")
-    linea(longitud, AZUL_OSCURO)
-
-def pausa():
-    """Pausa hasta que el usuario presione ENTER"""
-    input(f"\n{AZUL_CLARO}Presione ENTER para continuar...{RESET}")
+# ========================================
+# MENÚ Y FUNCIONES PRINCIPALES
+# ========================================
 
 def gestion_usuarios():
     usuarios = cargar_datos("usuarios.json")
@@ -75,8 +47,13 @@ def gestion_usuarios():
             break
             
         else:
-            print(f"\n{ROJO}Opcion no valida. Intente de nuevo.{RESET}")
+            mensaje_error("Opcion no valida. Intente de nuevo.")
             pausa()
+
+
+# ========================================
+# FUNCIONES DE GESTIÓN
+# ========================================
 
 def agregar_usuario(usuarios):
     limpiar_pantalla()
@@ -86,9 +63,9 @@ def agregar_usuario(usuarios):
     id = input(f"{CYAN}Id del usuario: {RESET}")
     nombre = input(f"{CYAN}Nombre: {RESET}")
     apellido = input(f"{CYAN}Apellido: {RESET}")
-    telefono = (input(f"{CYAN}Teléfono: {RESET}"))
+    telefono = input(f"{CYAN}Teléfono: {RESET}")
     direccion = input(f"{CYAN}Dirección: {RESET}")
-    tipo = (input(f"{CYAN}Tipo de usuario(residente/administrador): ${RESET}"))
+    tipo = input(f"{CYAN}Tipo de usuario(residente/administrador): {RESET}")
     
     nuevo_usuario = {
         "id": id,
@@ -100,7 +77,8 @@ def agregar_usuario(usuarios):
     }
 
     usuarios.append(nuevo_usuario)
-    print(f"\n{VERDE}✓ Herramienta agregada exitosamente!{RESET}")
+    mensaje_exito("Usuario agregado exitosamente!")
+
 
 def mostrar_usuarios(usuarios):
     """Muestra todos los usuarios de forma dinámica"""
@@ -109,7 +87,7 @@ def mostrar_usuarios(usuarios):
     print()
     
     if len(usuarios) == 0:
-        print(f"{AMARILLO}No hay usuarios registrados en el sistema.{RESET}")
+        mensaje_advertencia("No hay usuarios registrados en el sistema.")
         return
     
     # Mostrar resumen
@@ -163,14 +141,16 @@ def mostrar_usuarios(usuarios):
 
 
 def buscar_usuario(usuarios):
+    """Busca un usuario por ID"""
+    limpiar_pantalla()
+    titulo("BUSCAR USUARIO")
+    print()
     
-    # usuarios por id 
     if len(usuarios) == 0:
-        print("\nNo hay usuarios registrados.")
+        mensaje_advertencia("No hay usuarios registrados.")
         return
     
-    print("\n--- BUSCAR USUARIO ---")
-    id_buscar = input("Ingrese el ID del usuario: ")
+    id_buscar = input(f"{CYAN}Ingrese el ID del usuario: {RESET}")
     
     usuario_encontrado = None
     
@@ -180,23 +160,26 @@ def buscar_usuario(usuarios):
             break
     
     if usuario_encontrado:
-        print("\nUsuario encontrado:")
-        print(f"ID: {usuario_encontrado['id']}")
-        print(f"Nombre: {usuario_encontrado['nombre']} {usuario_encontrado['apellido']}")
-        print(f"Telefono: {usuario_encontrado['telefono']}")
-        print(f"Direccion: {usuario_encontrado['direccion']}")
-        print(f"Tipo: {usuario_encontrado['tipo']}")
+        print()
+        linea(70, VERDE)
+        print(f"{VERDE}{NEGRITA}USUARIO ENCONTRADO{RESET}")
+        linea(70, VERDE)
+        print(f"\n  {CYAN}ID:{RESET} {usuario_encontrado['id']}")
+        print(f"  {CYAN}Nombre:{RESET} {NEGRITA}{usuario_encontrado['nombre']} {usuario_encontrado['apellido']}{RESET}")
+        print(f"  {CYAN}Telefono:{RESET} {usuario_encontrado['telefono']}")
+        print(f"  {CYAN}Direccion:{RESET} {usuario_encontrado['direccion']}")
+        print(f"  {CYAN}Tipo:{RESET} {usuario_encontrado['tipo']}")
     else:
-        print("\nUsuario no encontrado.")
+        mensaje_error("Usuario no encontrado.")
+
 
 def eliminar_usuario(usuarios):
-
     limpiar_pantalla()
     titulo("ELIMINAR USUARIO")
     print()
     
     if len(usuarios) == 0:
-        print(f"{AMARILLO}No hay usuarios registrados.{RESET}")
+        mensaje_advertencia("No hay usuarios registrados.")
         return
     
     id_eliminar = input(f"{CYAN}Ingrese el ID del usuario a eliminar: {RESET}")
@@ -216,9 +199,9 @@ def eliminar_usuario(usuarios):
             
             if confirmacion == "s":
                 usuarios.pop(i)
-                print(f"\n{VERDE}✓ Usuario eliminado exitosamente.{RESET}")
+                mensaje_exito("Usuario eliminado exitosamente.")
             else:
                 print(f"\n{CYAN}Eliminacion cancelada.{RESET}")
             return
     
-    print(f"\n{ROJO}✗ Usuario no encontrado.{RESET}")
+    mensaje_error("Usuario no encontrado.")

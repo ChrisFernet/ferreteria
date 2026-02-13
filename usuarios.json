@@ -1,30 +1,6 @@
 [
     {
         "id": "01",
-        "nombre": "carlos",
-        "apellido": "solano",
-        "telefono": "2203",
-        "direccion": "calle",
-        "tipo": "residente"
-    },
-    {
-        "id": "01",
-        "nombre": "cris",
-        "apellido": "solano",
-        "telefono": "210",
-        "direccion": "callexy",
-        "tipo": "residente"
-    },
-    {
-        "id": "01",
-        "nombre": "samuca",
-        "apellido": "leme",
-        "telefono": "584385",
-        "direccion": "callex",
-        "tipo": "administrador"
-    },
-    {
-        "id": "01",
         "nombre": "cris",
         "apellido": "solano",
         "telefono": "2029",
@@ -37,6 +13,6 @@
         "apellido": "odl",
         "telefono": "123",
         "direccion": "efde",
-        "tipo": "residente"
+        "tipo": "administrador"
     }
 ]
