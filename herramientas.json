@@ -11,7 +11,7 @@
         "id": "03",
         "nombre": "alicante",
         "categoria": "construccion",
-        "cantidad": 5,
+        "cantidad": 2,
         "estado": "activa",
         "valor_estimado": 10000.0
     }

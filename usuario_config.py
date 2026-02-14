@@ -1,5 +1,6 @@
 from json_config import cargar_datos, guardar_datos
 from estilos import *
+from logs import *  
 
 # ========================================
 # MENÚ Y FUNCIONES PRINCIPALES
@@ -77,6 +78,10 @@ def agregar_usuario(usuarios):
     }
 
     usuarios.append(nuevo_usuario)
+    
+    # Registrar en logs
+    log_usuario_creado(id, f"{nombre} {apellido}", tipo, "ADMIN")
+    
     mensaje_exito("Usuario agregado exitosamente!")
 
 
@@ -198,6 +203,9 @@ def eliminar_usuario(usuarios):
             confirmacion = input(f"{ROJO}¿Esta seguro? (s/n): {RESET}").lower()
             
             if confirmacion == "s":
+                # Registrar en logs antes de eliminar
+                log_usuario_eliminado(h['id'], f"{h['nombre']} {h['apellido']}", "ADMIN")
+                
                 usuarios.pop(i)
                 mensaje_exito("Usuario eliminado exitosamente.")
             else:

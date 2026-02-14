@@ -1,0 +1,11 @@
+========================================
+  SISTEMA DE GESTIÓN DE HERRAMIENTAS
+  Registro de eventos iniciado
+  Fecha: 2026-02-13 22:26:33
+========================================
+
+[2026-02-13 22:26:33] [INFO] Sistema de logs iniciado correctamente
+[2026-02-13 22:26:46] [INFO] [Usuario: 02] Inicio de sesión - crock odl (Tipo: administrador)
+[2026-02-13 22:27:13] [WARNING] [Usuario: ADMIN] Usuario eliminado - ID: 02, Nombre: crock odl
+[2026-02-13 22:27:38] [SUCCESS] [Usuario: ADMIN] Nuevo usuario creado - ID: 01, Nombre: Cristian Ferney Solano, Tipo: administrador
+[2026-02-13 22:27:47] [WARNING] [Usuario: ADMIN] Usuario eliminado - ID: 01, Nombre: cris solano

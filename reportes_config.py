@@ -1,9 +1,7 @@
 from json_config import cargar_datos
 from estilos import *
 
-# ========================================
-# MENÚ PRINCIPAL DE REPORTES
-# ========================================
+# menu reportes
 
 def consultas_y_reportes():
     """Menú principal de consultas y reportes para administradores"""
@@ -58,12 +56,10 @@ def consultas_y_reportes():
             pausa()
 
 
-# ========================================
-# 1. REPORTE: HERRAMIENTAS CON STOCK BAJO
-# ========================================
+# herramientas stock bajo
 
 def herramientas_stock_bajo():
-    """Muestra herramientas con stock bajo (menos de 3 unidades)"""
+    # herramientas de bajo stock (min 3 por defecto)
     limpiar_pantalla()
     titulo("HERRAMIENTAS CON STOCK BAJO")
     print()
@@ -147,9 +143,7 @@ def herramientas_stock_bajo():
     print(f"  {AMARILLO}● Stock bajo (< {limite} unidades):{RESET} {len(stock_bajo)}")
 
 
-# ========================================
-# 2. REPORTE: PRÉSTAMOS ACTIVOS Y VENCIDOS
-# ========================================
+# prestamos activos y vencidos
 
 def prestamos_activos_vencidos():
     """Muestra préstamos activos y detecta los vencidos"""

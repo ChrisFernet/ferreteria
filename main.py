@@ -3,11 +3,10 @@ from usuario_config import gestion_usuarios
 from prestamos_config import gestionar_prestamos
 from reportes_config import consultas_y_reportes
 from json_config import cargar_datos, guardar_datos
-from estilos import *
+from estilos import *  
+from logs import *  
 
-# ========================================
 # FUNCIONES DE MENÚ
-# ========================================
 
 def mensaje_bienvenida():
     limpiar_pantalla()
@@ -34,7 +33,7 @@ def login():
         mensaje_error("No hay usuarios registrados en el sistema.")
         mensaje_advertencia("Por favor, contacte al administrador.")
         return None
-    
+
     # Pedir ID
     id_usuario = input(f"{CYAN}Ingrese su ID de usuario: {RESET}")
     
@@ -44,8 +43,16 @@ def login():
             # Usuario encontrado
             print(f"\n{VERDE}Bienvenido, {usuario['nombre']} {usuario['apellido']}!{RESET}")
             print(f"{CYAN}Tipo de usuario: {usuario['tipo']}{RESET}")
+            
+            # Registrar login en logs
+            log_login(
+                usuario['id'],
+                f"{usuario['nombre']} {usuario['apellido']}",
+                usuario['tipo']
+            )
+            
             pausa()
-            return usuario  # Retorna los datos del usuario
+            return usuario
     
     # Si llegamos aquí, el usuario no existe
     mensaje_error("Usuario no encontrado.")
@@ -55,6 +62,10 @@ def login():
 
 def main_menu():
     """Función del menú principal con validación de usuario"""
+    
+    # Inicializar sistema de logs
+    inicializar_sistema_logs()
+    
     mensaje_bienvenida()
     
     while True:
@@ -86,6 +97,12 @@ def main_menu():
         # Preguntar si quiere cerrar sesión
         cerrar = input(f"\n{CYAN}¿Desea cerrar sesion? (s/n): {RESET}").lower()
         if cerrar == "s":
+            # Registrar logout en logs
+            log_logout(
+                usuario_actual['id'],
+                f"{usuario_actual['nombre']} {usuario_actual['apellido']}"
+            )
+            
             limpiar_pantalla()
             print()
             linea(60, CYAN)
@@ -106,7 +123,8 @@ def menu_administrador():
         print(f"{AZUL_CLARO}  2.{RESET} {BLANCO}Gestionar herramientas{RESET}")
         print(f"{AZUL_CLARO}  3.{RESET} {BLANCO}Gestionar prestamos{RESET}")
         print(f"{AZUL_CLARO}  4.{RESET} {BLANCO}Consultas y reportes{RESET}")
-        print(f"{AZUL_CLARO}  5.{RESET} {BLANCO}Volver al menu principal{RESET}")
+        print(f"{AZUL_CLARO}  5.{RESET} {BLANCO}Ver logs del sistema{RESET}")
+        print(f"{AZUL_CLARO}  6.{RESET} {BLANCO}Volver al menu principal{RESET}")
         
         print()
         linea(60)
@@ -126,6 +144,9 @@ def menu_administrador():
             consultas_y_reportes()
             
         elif opcion_admin == "5":
+            ver_logs_sistema() 
+            
+        elif opcion_admin == "6":  
             print(f"\n{CYAN}Volviendo al menu principal...{RESET}")
             break
             
@@ -288,6 +309,15 @@ def solicitar_herramienta_usuario(usuario_actual):
     solicitudes.append(nueva_solicitud)
     guardar_datos(solicitudes, "solicitudes.json")
     
+    # Registrar en logs
+    log_solicitud_creada(
+        nueva_solicitud['id'],
+        usuario_actual['id'],
+        f"{usuario_actual['nombre']} {usuario_actual['apellido']}",
+        herramienta['nombre'],
+        cantidad
+    )
+    
     print()
     linea(60, VERDE)
     print(f"{VERDE}{NEGRITA}✓ SOLICITUD CREADA EXITOSAMENTE{RESET}")
@@ -421,7 +451,33 @@ def menu_usuario_residente(usuario_actual):
             mensaje_error("Opcion no valida.")
             pausa()
 
+def ver_logs_sistema():
+    """Muestra los últimos logs del sistema"""
+    limpiar_pantalla()
+    titulo("REGISTRO DE EVENTOS DEL SISTEMA", 70)
+    print()
+    
+    logs = leer_logs(50)  # Ver últimas 50 líneas
+    
+    print(f"{CYAN}Mostrando las últimas 50 entradas del registro:{RESET}")
+    print()
+    linea(70, AZUL_CLARO)
+    print()
+    
+    for linea_log in logs:
+        # Colorear según el tipo de log
+        if "[ERROR]" in linea_log:
+            print(f"{ROJO}{linea_log.strip()}{RESET}")
+        elif "[WARNING]" in linea_log:
+            print(f"{AMARILLO}{linea_log.strip()}{RESET}")
+        elif "[SUCCESS]" in linea_log:
+            print(f"{VERDE}{linea_log.strip()}{RESET}")
+        else:
+            print(f"{CYAN}{linea_log.strip()}{RESET}")
+    
+    print()
+    linea(70, AZUL_CLARO)
+    pausa()     
 
-# Ejecutar
-if __name__ == "__main__":
-    main_menu()
+
+main_menu()

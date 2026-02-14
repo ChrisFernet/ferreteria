@@ -1,9 +1,6 @@
 from json_config import cargar_datos, guardar_datos
 from estilos import *
-
-# ========================================
-# MENÚ Y FUNCIONES PRINCIPALES
-# ========================================
+from logs import *  
 
 def gestionar_herramientas():
     """Menú principal de gestión de herramientas"""
@@ -85,6 +82,8 @@ def agregar_herramienta(herramientas):
     }
     
     herramientas.append(herramienta)
+    log_agregar_herramienta(id, nombre, cantidad, "ADMIN")
+    
     mensaje_exito("Herramienta agregada exitosamente!")
 
 
@@ -238,7 +237,9 @@ def actualizar_herramienta(herramientas):
             elif opcion == "2":
                 h["categoria"] = input(f"{CYAN}Nueva categoria: {RESET}")
             elif opcion == "3":
+                valor_anterior = h["cantidad"]
                 h["cantidad"] = int(input(f"{CYAN}Nueva cantidad: {RESET}"))
+                log_actualizar_herramienta(h['id'], h['nombre'], 'cantidad', valor_anterior, h["cantidad"], "ADMIN")
             elif opcion == "4":
                 h["estado"] = input(f"{CYAN}Nuevo estado: {RESET}")
             elif opcion == "5":
@@ -285,10 +286,8 @@ def eliminar_herramienta(herramientas):
             confirmacion = input(f"{ROJO}¿Esta seguro? (s/n): {RESET}").lower()
             
             if confirmacion == "s":
+                # Registrar en logs antes de eliminar
+                log_eliminar_herramienta(h['id'], h['nombre'], "ADMIN")
+                
                 herramientas.pop(i)
                 mensaje_exito("Herramienta eliminada exitosamente.")
-            else:
-                print(f"\n{CYAN}Eliminacion cancelada.{RESET}")
-            return
-    
-    mensaje_error("Herramienta no encontrada.")

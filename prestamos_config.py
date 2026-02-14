@@ -1,9 +1,8 @@
 from json_config import cargar_datos, guardar_datos
 from estilos import *
+from logs import *  
 
-# ========================================
 # GESTIÓN DE PRÉSTAMOS
-# ========================================
 
 def gestionar_prestamos():
     """Menú principal de gestión de préstamos para ADMINISTRADORES"""
@@ -220,6 +219,14 @@ def aprobar_rechazar_solicitud():
     if accion == "1":
         # APROBAR
         if cantidad_disponible < cantidad_solicitada:
+            # Registrar error en logs
+            log_stock_insuficiente(
+                solicitud_encontrada.get('nombre_herramienta'),
+                cantidad_solicitada,
+                cantidad_disponible,
+                "ADMIN"
+            )
+            
             print(f"\n{ROJO}✗ No se puede aprobar: stock insuficiente.{RESET}")
             return
         
@@ -245,6 +252,24 @@ def aprobar_rechazar_solicitud():
         
         # Guardar todo
         prestamos.append(nuevo_prestamo)
+        
+        # Registrar en logs
+        log_solicitud_aprobada(
+            solicitud_encontrada['id'],
+            "ADMIN",
+            solicitud_encontrada.get('nombre_usuario'),
+            solicitud_encontrada.get('nombre_herramienta'),
+            cantidad_solicitada
+        )
+        
+        log_prestamo_creado(
+            nuevo_prestamo['id'],
+            solicitud_encontrada.get('id_usuario'),
+            solicitud_encontrada.get('nombre_usuario'),
+            solicitud_encontrada.get('nombre_herramienta'),
+            cantidad_solicitada
+        )
+        
         guardar_datos(prestamos, "prestamos.json")
         guardar_datos(solicitudes, "solicitudes.json")
         guardar_datos(herramientas, "herramientas.json")
@@ -262,6 +287,16 @@ def aprobar_rechazar_solicitud():
     elif accion == "2":
         # RECHAZAR
         solicitudes[indice_solicitud]['estado'] = 'rechazada'
+        
+        # Registrar en logs
+        log_solicitud_rechazada(
+            solicitud_encontrada['id'],
+            "ADMIN",
+            solicitud_encontrada.get('nombre_usuario'),
+            solicitud_encontrada.get('nombre_herramienta'),
+            "Rechazado por administrador"
+        )
+        
         guardar_datos(solicitudes, "solicitudes.json")
         
         print()
@@ -355,6 +390,15 @@ def devolver_herramienta():
     
     # Cambiar estado del préstamo
     prestamos[indice_prestamo]['estado'] = 'devuelto'
+    
+    # Registrar en logs
+    log_devolucion(
+        prestamo_encontrado['id'],
+        prestamo_encontrado.get('id_usuario'),
+        prestamo_encontrado.get('nombre_usuario'),
+        prestamo_encontrado.get('nombre_herramienta'),
+        cantidad_devolver
+    )
     
     # Guardar cambios
     guardar_datos(prestamos, "prestamos.json")

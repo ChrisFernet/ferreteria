@@ -1,18 +1,10 @@
 [
     {
         "id": "01",
-        "nombre": "cris",
-        "apellido": "solano",
-        "telefono": "2029",
-        "direccion": "calle2",
-        "tipo": "residente"
-    },
-    {
-        "id": "02",
-        "nombre": "crock",
-        "apellido": "odl",
-        "telefono": "123",
-        "direccion": "efde",
+        "nombre": "Cristian Ferney",
+        "apellido": "Solano",
+        "telefono": "3208133071",
+        "direccion": "calle xyz",
         "tipo": "administrador"
     }
 ]
