@@ -1,11 +1,21 @@
 ========================================
   SISTEMA DE GESTIÓN DE HERRAMIENTAS
   Registro de eventos iniciado
-  Fecha: 2026-02-13 22:26:33
+  Fecha: 2026-02-14 19:19:45
 ========================================
 
-[2026-02-13 22:26:33] [INFO] Sistema de logs iniciado correctamente
-[2026-02-13 22:26:46] [INFO] [Usuario: 02] Inicio de sesión - crock odl (Tipo: administrador)
-[2026-02-13 22:27:13] [WARNING] [Usuario: ADMIN] Usuario eliminado - ID: 02, Nombre: crock odl
-[2026-02-13 22:27:38] [SUCCESS] [Usuario: ADMIN] Nuevo usuario creado - ID: 01, Nombre: Cristian Ferney Solano, Tipo: administrador
-[2026-02-13 22:27:47] [WARNING] [Usuario: ADMIN] Usuario eliminado - ID: 01, Nombre: cris solano
+[2026-02-14 19:19:45] [INFO] Sistema de logs iniciado correctamente
+[2026-02-14 21:14:13] [INFO] Sistema de logs iniciado correctamente
+[2026-02-14 21:14:16] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-14 21:14:37] [SUCCESS] [Usuario: ADMIN] Nuevo usuario creado - ID: 02, Nombre: Diana Chaparro , Tipo: 
+[2026-02-14 21:14:44] [WARNING] [Usuario: ADMIN] Usuario eliminado - ID: 02, Nombre: Diana Chaparro 
+[2026-02-14 21:15:10] [SUCCESS] [Usuario: ADMIN] Nuevo usuario creado - ID: 02, Nombre: Usuario 1 , Tipo: residente
+[2026-02-14 21:15:16] [INFO] [Usuario: 01] Cierre de sesión - Cristian Ferney Solano
+[2026-02-14 21:15:20] [INFO] Sistema de logs iniciado correctamente
+[2026-02-14 21:15:53] [INFO] [Usuario: 02] Inicio de sesión - Usuario 1  (Tipo: residente)
+[2026-02-14 21:16:45] [INFO] [Usuario: 02] Nueva solicitud - ID: S003, Herramienta: alicante, Cantidad: 1
+[2026-02-14 21:16:57] [INFO] [Usuario: 02] Cierre de sesión - Usuario 1 
+[2026-02-14 21:16:58] [INFO] Sistema de logs iniciado correctamente
+[2026-02-14 21:17:02] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-14 21:17:30] [SUCCESS] [Usuario: ADMIN] Solicitud aprobada - ID: S003, Usuario: Usuario 1 , Herramienta: alicante, Cantidad: 1
+[2026-02-14 21:17:30] [SUCCESS] [Usuario: 02] Nuevo préstamo - ID: P004, Usuario: Usuario 1 , Herramienta: alicante, Cantidad: 1

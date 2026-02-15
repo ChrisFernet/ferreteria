@@ -6,5 +6,13 @@
         "telefono": "3208133071",
         "direccion": "calle xyz",
         "tipo": "administrador"
+    },
+    {
+        "id": "02",
+        "nombre": "Usuario 1",
+        "apellido": "",
+        "telefono": "13456789",
+        "direccion": "calle xyz",
+        "tipo": "residente"
     }
 ]

@@ -18,5 +18,15 @@
         "cantidad": 3,
         "fecha_devolucion": "2026-03-02",
         "estado": "aprobada"
+    },
+    {
+        "id": "S003",
+        "id_usuario": "02",
+        "nombre_usuario": "Usuario 1 ",
+        "id_herramienta": "03",
+        "nombre_herramienta": "alicante",
+        "cantidad": 1,
+        "fecha_devolucion": "2026-03-15}",
+        "estado": "aprobada"
     }
 ]
