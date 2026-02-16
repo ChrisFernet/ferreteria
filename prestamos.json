@@ -45,5 +45,29 @@
         "fecha_devolucion": "2026-03-15}",
         "estado": "activo",
         "observaciones": ""
+    },
+    {
+        "id": "P005",
+        "id_solicitud": "S004",
+        "id_usuario": "03",
+        "nombre_usuario": "Carlos Rueda",
+        "id_herramienta": "04",
+        "nombre_herramienta": "Taladro",
+        "cantidad": 10,
+        "fecha_devolucion": "2026-05-01",
+        "estado": "activo",
+        "observaciones": ""
+    },
+    {
+        "id": "P006",
+        "id_solicitud": "S005",
+        "id_usuario": "03",
+        "nombre_usuario": "Carlos Rueda",
+        "id_herramienta": "04",
+        "nombre_herramienta": "Taladro",
+        "cantidad": 5,
+        "fecha_devolucion": "2026-05-4",
+        "estado": "activo",
+        "observaciones": ""
     }
 ]

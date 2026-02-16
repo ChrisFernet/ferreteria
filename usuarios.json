@@ -14,5 +14,13 @@
         "telefono": "13456789",
         "direccion": "calle xyz",
         "tipo": "residente"
+    },
+    {
+        "id": "03",
+        "nombre": "Carlos",
+        "apellido": "Rueda",
+        "telefono": "1324",
+        "direccion": "xyz",
+        "tipo": "residente"
     }
 ]

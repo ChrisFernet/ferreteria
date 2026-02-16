@@ -19,3 +19,27 @@
 [2026-02-14 21:17:02] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
 [2026-02-14 21:17:30] [SUCCESS] [Usuario: ADMIN] Solicitud aprobada - ID: S003, Usuario: Usuario 1 , Herramienta: alicante, Cantidad: 1
 [2026-02-14 21:17:30] [SUCCESS] [Usuario: 02] Nuevo préstamo - ID: P004, Usuario: Usuario 1 , Herramienta: alicante, Cantidad: 1
+[2026-02-15 20:23:17] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 20:23:55] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-15 21:02:49] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 21:02:55] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-15 21:03:26] [SUCCESS] [Usuario: ADMIN] Nuevo usuario creado - ID: 03, Nombre: Carlos Rueda, Tipo: residente
+[2026-02-15 21:04:00] [SUCCESS] [Usuario: ADMIN] Nueva herramienta agregada - ID: 04, Nombre: Taladro, Cantidad: 20
+[2026-02-15 21:04:06] [INFO] [Usuario: 01] Cierre de sesión - Cristian Ferney Solano
+[2026-02-15 21:04:08] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 21:04:11] [INFO] [Usuario: 03] Inicio de sesión - Carlos Rueda (Tipo: residente)
+[2026-02-15 21:04:39] [INFO] [Usuario: 03] Nueva solicitud - ID: S004, Herramienta: Taladro, Cantidad: 10
+[2026-02-15 21:04:43] [INFO] [Usuario: 03] Cierre de sesión - Carlos Rueda
+[2026-02-15 21:04:46] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 21:04:50] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-15 21:05:16] [SUCCESS] [Usuario: ADMIN] Solicitud aprobada - ID: S004, Usuario: Carlos Rueda, Herramienta: Taladro, Cantidad: 10
+[2026-02-15 21:05:16] [SUCCESS] [Usuario: 03] Nuevo préstamo - ID: P005, Usuario: Carlos Rueda, Herramienta: Taladro, Cantidad: 10
+[2026-02-15 21:10:04] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 21:10:07] [INFO] [Usuario: 03] Inicio de sesión - Carlos Rueda (Tipo: residente)
+[2026-02-15 21:10:25] [INFO] [Usuario: 03] Nueva solicitud - ID: S005, Herramienta: Taladro, Cantidad: 5
+[2026-02-15 21:10:30] [INFO] [Usuario: 03] Cierre de sesión - Carlos Rueda
+[2026-02-15 21:10:32] [INFO] Sistema de logs iniciado correctamente
+[2026-02-15 21:10:34] [INFO] [Usuario: 01] Inicio de sesión - Cristian Ferney Solano (Tipo: administrador)
+[2026-02-15 21:10:55] [SUCCESS] [Usuario: ADMIN] Solicitud aprobada - ID: S005, Usuario: Carlos Rueda, Herramienta: Taladro, Cantidad: 5
+[2026-02-15 21:10:55] [SUCCESS] [Usuario: 03] Nuevo préstamo - ID: P006, Usuario: Carlos Rueda, Herramienta: Taladro, Cantidad: 5
+[2026-02-15 21:14:16] [INFO] Sistema de logs iniciado correctamente

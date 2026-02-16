@@ -28,5 +28,25 @@
         "cantidad": 1,
         "fecha_devolucion": "2026-03-15}",
         "estado": "aprobada"
+    },
+    {
+        "id": "S004",
+        "id_usuario": "03",
+        "nombre_usuario": "Carlos Rueda",
+        "id_herramienta": "04",
+        "nombre_herramienta": "Taladro",
+        "cantidad": 10,
+        "fecha_devolucion": "2026-05-01",
+        "estado": "aprobada"
+    },
+    {
+        "id": "S005",
+        "id_usuario": "03",
+        "nombre_usuario": "Carlos Rueda",
+        "id_herramienta": "04",
+        "nombre_herramienta": "Taladro",
+        "cantidad": 5,
+        "fecha_devolucion": "2026-05-4",
+        "estado": "aprobada"
     }
 ]

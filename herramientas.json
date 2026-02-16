@@ -14,5 +14,13 @@
         "cantidad": 1,
         "estado": "activa",
         "valor_estimado": 10000.0
+    },
+    {
+        "id": "04",
+        "nombre": "Taladro",
+        "categoria": "construccion",
+        "cantidad": 5,
+        "estado": "activa",
+        "valor_estimado": 50000.0
     }
 ]
