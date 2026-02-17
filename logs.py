@@ -163,32 +163,6 @@ def leer_logs(cantidad_lineas=50):
     except:
         return ["Error al leer logs"]
 
-
-# limpiar logs antiguos
-def limpiar_logs_antiguos(dias=30):
-    try:
-        if not os.path.exists(ARCHIVO_LOG):
-            return
-        
-        # leer archivo
-        archivo = open(ARCHIVO_LOG, 'r')
-        lineas = archivo.readlines()
-        archivo.close()
-        
-        # si hay más de 1000 líneas, mantener solo las últimas 1000
-        if len(lineas) > 1000:
-            lineas_recientes = lineas[-1000:]
-            
-            archivo = open(ARCHIVO_LOG, 'w')
-            for linea in lineas_recientes:
-                archivo.write(linea)
-            archivo.close()
-            
-            log_info(f"Logs limpiados - Se mantuvieron las últimas 1000 entradas")
-    except:
-        print("Error al limpiar logs")
-
-
 # inicializar sistema de logs
 def inicializar_sistema_logs():
     # crear archivo si no existe
